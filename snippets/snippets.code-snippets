@@ -1,0 +1,43 @@
+{
+    "Ninja-Get":{
+        "prefix": "!Ni-Get",
+        "body": [
+            "@api.get('/')",
+            "def get(request):",
+            ""
+    ]
+    },
+    "Ninja-Post":{
+        "prefix": "!Ni-Post",
+        "body": [
+            "@api.Post('/')",
+            "def Post(request):",
+            ""
+    ]
+    },
+    "Ninja-Put":{
+        "prefix": "!Ni-Put",
+        "body": [
+            "@api.Put('/')",
+            "def Put(request):",
+            ""
+    ]
+    },
+    "Ninja-delete":{
+        "prefix": "!Ni-delete",
+        "body": [
+            "@api.delete('/')",
+            "def delete(request):",
+            ""
+    ]
+    },
+    "Ninja-patch":{
+        "prefix": "!Ni-patch",
+        "body": [
+            "@api.patch('/')",
+            "def patch(request):",
+            ""
+    ]
+    },
+    
+}
