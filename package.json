@@ -6,7 +6,7 @@
   "engines": {
     "vscode": "^1.87.0"
   },
-
+	"publisher": "FayezAl-Shwayya",
   "repository": {
     "type": "git",
     "url":"https://github.com/FKQ7/Django-Ninja-Snippets"

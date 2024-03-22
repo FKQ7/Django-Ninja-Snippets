@@ -1,43 +1,160 @@
 {
-    "Ninja-Get":{
+    "Ninja-Get": {
         "prefix": "!Ni-Get",
         "body": [
-            "@api.get('/')",
+            "@api.get('${1:/}')",
             "def get(request):",
-            "   return "
-    ]
+            "    # Your logic here",
+            "    return {'message': 'GET request successful'}"
+        ]
     },
-    "Ninja-Post":{
+    "Ninja-Post": {
         "prefix": "!Ni-Post",
         "body": [
-            "@api.post('/')",
+            "@api.post('${1:/}')",
             "def post(request):",
-            "   return "
-    ]
+            "    # Your logic here",
+            "    return {'message': 'POST request successful'}"
+        ]
     },
-    "Ninja-Put":{
+    "Ninja-Put": {
         "prefix": "!Ni-Put",
         "body": [
-            "@api.put('/')",
+            "@api.put('${1:/}')",
             "def put(request):",
-            "   return "
-    ]
+            "    # Your logic here",
+            "    return {'message': 'PUT request successful'}"
+        ]
     },
-    "Ninja-delete":{
+    "Ninja-delete": {
         "prefix": "!Ni-delete",
         "body": [
-            "@api.delete('/')",
+            "@api.delete('${1:/}')",
             "def delete(request):",
-            "   return "
-    ]
+            "    # Your logic here",
+            "    return {'message': 'DELETE request successful'}"
+        ]
     },
-    "Ninja-patch":{
+    "Ninja-patch": {
         "prefix": "!Ni-patch",
         "body": [
-            "@api.patch('/')",
+            "@api.patch('${1:/}')",
             "def patch(request):",
-            "   return "
-    ]
+            "    # Your logic here",
+            "    return {'message': 'PATCH request successful'}"
+        ]
     },
-    
+    "Ninja-Head": {
+        "prefix": "!Ni-Head",
+        "body": [
+            "@api.head('${1:/}')",
+            "def head(request):",
+            "    # Your logic here",
+            "    return Response(status_code=200)"
+        ]
+    },
+    "Ninja-Options": {
+        "prefix": "!Ni-Options",
+        "body": [
+            "@api.options('${1:/}')",
+            "def options(request):",
+            "    # Your logic here",
+            "    return Response(status_code=200)"
+        ]
+    },
+    "Ninja-Trace": {
+        "prefix": "!Ni-Trace",
+        "body": [
+            "@api.trace('${1:/}')",
+            "def trace(request):",
+            "    # Your logic here",
+            "    return Response(status_code=200)"
+        ]
+    },
+    "Ninja-Any": {
+        "prefix": "!Ni-Any",
+        "body": [
+            "@api.any('${1:/}')",
+            "def any_method(request):",
+            "    # Your logic here",
+            "    return Response(status_code=200)"
+        ]
+    },
+    "Ninja-PathParam": {
+        "prefix": "!Ni-PathParam",
+        "body": [
+            "@api.get('/${1:param}')",
+            "def get_with_param(request, ${1:param}):",
+            "    # Your logic here",
+            "    return {'param_value': ${1:param}}"
+        ]
+    },
+    "Ninja-QueryParams": {
+        "prefix": "!Ni-QueryParams",
+        "body": [
+            "@api.get('${1:/}')",
+            "def get_with_query_params(request, ${2:param1}: ${3:int}, ${4:param2}: ${5:str}):",
+            "    # Your logic here",
+            "    return {'param1': ${2:param1}, 'param2': ${4:param2}}"
+        ]
+    },
+    "Ninja-RequestBody": {
+        "prefix": "!Ni-RequestBody",
+        "body": [
+            "@api.post('${1:/}')",
+            "def post_with_body(request, data: dict):",
+            "    # Your logic here",
+            "    return data"
+        ]
+    },
+    "Ninja-UploadFile": {
+        "prefix": "!Ni-UploadFile",
+        "body": [
+            "from ninja import Form, UploadFile",
+            "",
+            "@api.post('${1:/}')",
+            "async def upload_file(request, file: UploadFile = Form(...)):",
+            "    contents = await file.read()",
+            "    # Your logic here",
+            "    return {'filename': file.filename, 'contents': contents}"
+        ]        
+    },
+    "Ninja-Schema-Validation": {
+        "prefix": "!Ni-Schema",
+        "body": [
+            "from ninja import Schema",
+            "",
+            "class MySchema(Schema):",
+            "    ${1:field_name}: ${2:type}",
+            "",
+            "@api.post('${3:/validate}')",
+            "def validate_data(request, data: MySchema):",
+            "    # Data is validated according to MySchema definition",
+            "    return data.dict()"
+        ]
+    },
+    "Ninja-Nested-Route": {
+        "prefix": "!Ni-Nested",
+        "body": [
+            "from ninja import Router",
+            "",
+            "nested_router = Router(tags=['${1:Nested}'])",
+            "",
+            "@nested_router.get('/')",
+            "def nested_view(request):",
+            "    return {'message': '${2:Nested view}'}",
+            "",
+            "api.add_router('/${3:users}/', nested_router)"
+        ]
+    },
+    "Ninja-Custom-Status": {
+        "prefix": "!Ni-Custom-Status",
+        "body": [
+            "@api.post('${1:/}')",
+            "def custom_status(request):",
+            "    if ${2:some_condition}:",
+            "        return Response(status_code=${3:400}, detail='${4:Something went wrong}')",
+            "    return {'message': '${5:Success!}'}"
+        ]
+    }
 }
